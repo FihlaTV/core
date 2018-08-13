@@ -1314,8 +1314,6 @@ void SwContentNode::MakeFramesForAdjacentContentNode(SwContentNode& rNode)
 /**
  * Deletes all Views from the Doc for this Node.
  * The ContentFrames are removed from the corresponding Layout.
- *
- * An input param to identify if the acc table should be disposed.
  */
 void SwContentNode::DelFrames(SwRootFrame const*const pLayout)
 {
