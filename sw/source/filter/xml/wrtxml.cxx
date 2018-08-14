@@ -412,8 +412,15 @@ ErrCode SwXMLWriter::Write_( const uno::Reference < task::XStatusIndicator >& xS
     nRedlineFlags = m_pDoc->getIDocumentRedlineAccess().GetRedlineFlags();
     nRedlineFlags &= ~RedlineFlags::ShowMask;
     nRedlineFlags |= RedlineFlags::ShowInsert;
-    if ( *o3tl::doAccess<bool>(aAny) )
+    if (getenv("SW_REDLINEHIDE"))
+    {
         nRedlineFlags |= RedlineFlags::ShowDelete;
+    }
+    else
+    {
+        if (*o3tl::doAccess<bool>(aAny))
+            nRedlineFlags |= RedlineFlags::ShowDelete;
+    }
     m_pDoc->getIDocumentRedlineAccess().SetRedlineFlags( nRedlineFlags );
 
     if (xStatusIndicator.is())
