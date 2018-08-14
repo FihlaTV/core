@@ -526,7 +526,7 @@ SwTextNode *SwTextNode::SplitContentNode(const SwPosition & rPos,
         pNode->MakeFramesForAdjacentContentNode(*this);
         lcl_ChangeFootnoteRef( *this );
         if (pContentIndexRestore)
-        {   // call after making frames
+        {   // call after making frames; listeners will take care of adding to the right frame
             (*pContentIndexRestore)(pNode, sw::mark::RestoreMode::Flys);
         }
     }
@@ -595,7 +595,7 @@ SwTextNode *SwTextNode::SplitContentNode(const SwPosition & rPos,
         }
         lcl_ChangeFootnoteRef( *pNode );
         if (pContentIndexRestore)
-        {   // call after making frames
+        {   // call after making frames; listeners will take care of adding to the right frame
             (*pContentIndexRestore)(pNode, sw::mark::RestoreMode::Flys);
         }
     }
